@@ -15,9 +15,7 @@ var Settings = function(url) {
     this.url = BASE_URL + url;
     this.method = "GET";
     this.qs = {format: "json"};
-    this.headers = {
-        authorization: "Basic aW1zOno1MTJtVDRKeVgwUExXZw=="
-    };
+    this.headers = { authorization: "Basic aW1zOno1MTJtVDRKeVgwUExXZw=="};
 };
 
 var Drone = function(id, name, macA, loc, lastpada, files, filesCount) {
