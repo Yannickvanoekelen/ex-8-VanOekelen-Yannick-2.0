@@ -7,8 +7,9 @@
 // Vervolgens project eerst volledig uitgewerkt zelfstandig (geen committer)
 // Tenslotte project nu volledig hermaken met stukje per stukje te committen
 
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
-
+    
 var BASE_URL = "https://web-ims.thomasmore.be/datadistribution/API/2.0";
 var Settings = function(url) {
     this.url = BASE_URL + url;
