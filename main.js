@@ -77,5 +77,15 @@ var dronesSettings = new Settings("/drones?format=json");
                     drone.files,
                     drone.files_count
                 ));
-
-
+                var contentSettings = new Settings("/files/" + file.id + "/contents?format=json&embed");
+                    request(contentSettings, function(error, response, contentString) {
+                        var content = JSON.parse(contentString);
+                            dal.insertContent(new Content(
+                                content.id,
+                                content.mac_address,
+                                content.url,
+                                content.datetime,
+                                content.ref,
+                                content.rssi
+                            ));
+              
