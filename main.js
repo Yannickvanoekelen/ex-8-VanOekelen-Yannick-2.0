@@ -54,28 +54,28 @@ var File = function(fid, dateFirstRecord, dateLastRecord, dateLoaded, cont, cont
 
 // hulp gekregen van henzo bij deze install request van save
 
-var request = require("request");
-var dal = require("./storage.js");
 var dronesSettings = new Settings("/drones?format=json");
+var request = require("request");
+var dal = require("./Opslag.js");
 dal.clearDrone();
 dal.clearFile();
 dal.clearContent();
 
-var dronesSettings = new Settings("/drones?format=json");
+
     request(dronesSettings, function(error, response, dronesString) {
         var drones = JSON.parse(dronesString);
         drones.forEach(function(drone) {
             var droneSettings = new Settings("/drones/" + drone.id + "?format=json")
             request(droneSettings, function(error, response, droneString) {
                 var drone = JSON.parse(droneString);
-                dal.insertDrone(new Drone(
-                    drone.id,
-                    drone.name,
-                    drone.mac_address,
-                    drone.location,
-                    drone.last_packet_date,
-                    drone.files,
-                    drone.files_count
+                    dal.insertDrone(new Drone(
+                        drone.id,
+                        drone.name,
+                        drone.mac_address,
+                        drone.location,
+                        drone.last_packet_date,
+                        drone.files,
+                        drone.files_count
                 ));
                 var contentSettings = new Settings("/files/" + file.id + "/contents?format=json&embed");
                     request(contentSettings, function(error, response, contentString) {
@@ -88,4 +88,25 @@ var dronesSettings = new Settings("/drones?format=json");
                                 content.ref,
                                 content.rssi
                             ));
-              
+                        var filesSettings = new Settings("/files?drone_id.is=" + drone.id + "&format=json&date_loaded.greaterOrEqual=2016-12-07T12:00:00")
+                        request(filesSettings, function(error, response, filesString) {
+                            var files = JSON.parse(filesString)
+                            files.forEach(function(file) {
+                                var fileSettings = new Settings("/files/" + file.id + "?format=json")
+                                request(fileSettings, function(error, response, fileString) {
+                                    var file = JSON.parse(fileString);
+                                    dal.insertFile(new File(
+                                        file.file_id,
+                                        file.date_first_record,
+                                        file.date_last_record,
+                                        file.date_loaded,
+                                        file.contents,
+                                        file.contents_count,
+                                        file.url,
+                                        file.ref
+                                    ));
+                                });
+                            });
+                        });
+                    }
+
