@@ -1,15 +1,28 @@
 /**
  * Created by yannickvanoekelen on 13/12/16.
  */
-<!-- In samenwerking met genzo, jelle & kevin !-->
-<!-- Deze verzie is een 2.0 versie, vorige project was foutief opgeslagen met corruptie tot gevolg !-->
+// Eerst op papier uitgewerkt
+// vervolgens overleg gehad met Genzo, Jelle & Jeroen
+// Vervolgens stapje per stapje uitgewerkt (met hulp van bovenstaande partijen)
+// Vervolgens project eerst volledig uitgewerkt zelfstandig (geen committer)
+// Tenslotte project nu volledig hermaken met stukje per stukje te committen
 
-<!DOCTYPE html>
-<html>
-<body> <!-- Opmaak bepalen !-->
-<style media="screen">
-    h1, p {
-    font-family: 'Roboto', sans-serif;
+
+
+
+
+
+
+
+
+
+
+//<!DOCTYPE html>
+// <html>
+// <body> <!-- Opmaak bepalen !-->
+// <style media="screen">
+// h1, p {
+/*   font-family: 'Roboto', sans-serif;
 }
 table {
     border-collapse: collapse;
@@ -86,4 +99,4 @@ $.ajax(settings)
 </script>
 </head>
 
-</html>
+</html> */
