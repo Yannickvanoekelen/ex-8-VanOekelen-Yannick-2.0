@@ -25,8 +25,14 @@ var dal = {
     clearDrone: function(call) {
         this.connect(null, function(db) {
             db.collection('drones').drop(function(err, result) {
-                //callback(result);
                 db.close();
             });
         })
+    },
+    insertDrone: function(drone, callback) {
+        this.connect(null, function(db) {
+            db.collection('drones').insert(drone, function(err, result) {
+                db.close();
+            });
+        });
     },
