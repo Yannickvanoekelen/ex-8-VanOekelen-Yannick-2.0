@@ -22,7 +22,7 @@ var Settings = function(url) {
 };
 
 var Drone = function(id, name, macA, loc, lastpada, files, filesCount) {
-    this.id = id
+    this.id = id;
     this.name = name;
     this.mac_address = macA;
     this.location = loc;
@@ -65,7 +65,7 @@ dal.clearContent();
     request(dronesSettings, function(error, response, dronesString) {
         var drones = JSON.parse(dronesString);
         drones.forEach(function(drone) {
-            var droneSettings = new Settings("/drones/" + drone.id + "?format=json")
+            var droneSettings = new Settings("/drones/" + drone.id + "?format=json");
             request(droneSettings, function(error, response, droneString) {
                 var drone = JSON.parse(droneString);
                     dal.insertDrone(new Drone(
@@ -88,11 +88,12 @@ dal.clearContent();
                                 content.ref,
                                 content.rssi
                             ));
-                        var filesSettings = new Settings("/files?drone_id.is=" + drone.id + "&format=json&date_loaded.greaterOrEqual=2016-12-07T12:00:00")
+                        var filesSettings = new Settings("/files?drone_id.is=" +
+                            drone.id + "&format=json&date_loaded.greaterOrEqual=2016-12-07T12:00:00");
                         request(filesSettings, function(error, response, filesString) {
-                            var files = JSON.parse(filesString)
+                            var files = JSON.parse(filesString);
                             files.forEach(function(file) {
-                                var fileSettings = new Settings("/files/" + file.id + "?format=json")
+                                var fileSettings = new Settings("/files/" + file.id + "?format=json");
                                 request(fileSettings, function(error, response, fileString) {
                                     var file = JSON.parse(fileString);
                                     dal.insertFile(new File(
@@ -108,5 +109,7 @@ dal.clearContent();
                                 });
                             });
                         });
-                    }
+
+
+
 
