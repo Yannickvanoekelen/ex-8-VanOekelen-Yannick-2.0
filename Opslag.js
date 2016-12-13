@@ -49,4 +49,22 @@ var dal = {
                 db.close();
             });
         });
-    };
+    },
+
+    clearFile: function(call) {
+        this.connect(null, function(db) {
+             db.collection('files').drop(function(err, result) {
+            db.close();
+        });
+    })
+},
+    insertFile: function(drone, callback) {
+    this.connect(null, function(db) {
+        db.collection('files').insert(drone, function(err, result) {
+            db.close();
+        });
+    });
+}
+}
+
+module.exports = dal;
