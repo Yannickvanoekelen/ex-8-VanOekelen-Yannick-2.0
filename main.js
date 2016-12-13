@@ -40,7 +40,16 @@ var Content = function(id, macA, url, datetime, ref, rssi) {
     this.rssi = rssi;
 };
 
-
+var File = function(fid, dateFirstRecord, dateLastRecord, dateLoaded, cont, contentsCount, url, ref) {
+    this.file_id = fid;
+    this.date_first_record = dateFirstRecord;
+    this.date_last_record = dateLastRecord;
+    this.date_loaded = dateLoaded;
+    this.contents = cont;
+    this.contents_count = contentsCount;
+    this.url = url;
+    this.ref = ref;
+};
 
 
 
