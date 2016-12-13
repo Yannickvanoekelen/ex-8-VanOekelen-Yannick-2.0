@@ -12,8 +12,7 @@ var Settings = function(url) {
     this.url = BASE_URL + url;
     this.method = "GET";
     this.qs = {
-        -        format: 'json'
-    +        format: "json"
+    format: "json"
 };
     this.headers = {
         authorization: "Basic aW1zOno1MTJtVDRKeVgwUExXZw=="
@@ -51,8 +50,14 @@ var File = function(fid, dateFirstRecord, dateLastRecord, dateLoaded, cont, cont
     this.ref = ref;
 };
 
+// hulp gekregen van henzo bij deze install request van save
 
-
+var request = require("request");
+var dal = require("./storage.js");
+var dronesSettings = new Settings("/drones?format=json");
+dal.clearDrone();
+dal.clearFile();
+dal.clearContent();
 
 
 //<!DOCTYPE html>
