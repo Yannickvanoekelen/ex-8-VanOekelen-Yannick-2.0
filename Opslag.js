@@ -6,7 +6,7 @@
 // Vervolgens stapje per stapje uitgewerkt (met hulp van bovenstaande partijen)
 // Vervolgens project eerst volledig uitgewerkt zelfstandig (geen committer)
 // Tenslotte project nu volledig hermaken met stukje per stukje te committen
-
+//
 
 var MongoClient = require('mongodb').MongoClient;
 var url = 'mongodb://localhost:27017/prober';
