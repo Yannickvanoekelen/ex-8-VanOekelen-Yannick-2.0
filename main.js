@@ -61,9 +61,7 @@ dal.clearDrone();
 dal.clearFile();
 dal.clearContent();
 
-
 var dronesSettings = new Settings("/drones?format=json");
-
     request(dronesSettings, function(error, response, dronesString) {
         var drones = JSON.parse(dronesString);
         drones.forEach(function(drone) {
@@ -77,36 +75,7 @@ var dronesSettings = new Settings("/drones?format=json");
                     drone.location,
                     drone.last_packet_date,
                     drone.files,
-                    drone.files_count));
+                    drone.files_count
+                ));
 
-/*
-    }
-};
-$.ajax(settings)
-    .done(function(response_1) {
-        for (var x = 0; x < response_1.length; x++) {
-            settings['url'] = response_1[x]['url'];
-            $.ajax(settings).done(function(response_2) {
-                settings['url'] = 'https://web-ims.thomasmore.be/datadistribution/API/2.0/files?drone_id.is=' + response_2['id'] + '&format=json';
-                $.ajax(settings).done(function(response_3) {
-                    for (var y = 0; y < response_3.length; y++) {
-                        settings['url'] = response_3[y]['url'];
-                        $.ajax(settings).done(function(response_4) {
-                            $("#dronedata").append(
-                                '<tr>' +
-                                '<td>' + response_2.name + '</td>' +
-                                '<td>' + response_2.mac_address + '</td>' +
-                                '<td>' + response_4.id + '</td>' +
-                                '<td>' + response_4.date_first_record + '</td>' +
-                                '<td>' + response_4.date_last_record + '</td>' +
-                                '</tr>');
-                        });
-                    };
-                });
-            });
-        };
-    });
-</script>
-</head>
 
-</html> */
