@@ -31,6 +31,15 @@ var Drone = function(id, name, macA, loc, lastpada, files, filesCount) {
 };
 
 
+var Content = function(id, macA, url, datetime, ref, rssi) {
+    this.id = id;
+    this.mac_address = macA;
+    this.url = url;
+    this.datetime = datetime;
+    this.ref = ref;
+    this.rssi = rssi;
+};
+
 
 
 
