@@ -7,6 +7,8 @@
 // Vervolgens project eerst volledig uitgewerkt zelfstandig (geen committer)
 // Tenslotte project nu volledig hermaken met stukje per stukje te committen
 
+
+
 var BASE_URL = "https://web-ims.thomasmore.be/datadistribution/API/2.0";
 var Settings = function(url) {
     this.url = BASE_URL + url;
@@ -20,7 +22,7 @@ var Settings = function(url) {
 };
 
 var Drone = function(id, name, macA, loc, lastpada, files, filesCount) {
-    this._id = id
+    this.id = id
     this.name = name;
     this.mac_address = macA;
     this.location = loc;
@@ -60,59 +62,24 @@ dal.clearFile();
 dal.clearContent();
 
 
-//<!DOCTYPE html>
-// <html>
-// <body> <!-- Opmaak bepalen !-->
-// <style media="screen">
-// h1, p {
-/*   font-family: 'Roboto', sans-serif;
-}
-table {
-    border-collapse: collapse;
-    width: 100%;
-    font-family: 'Roboto', sans-serif;
-}
-th, td {
-    padding: 8px;
-    text-align: left;
-    border-bottom: 1px solid #ddd;
-}
-tr:hover {
-    background-color: #f5f5f5;
-}
-</style>
-<!-- Hoofding en tabel verwezelijken !-->
-<div>
-<h1>EX-7 Drone data: Yannick Van Oekelen</h1>
-<p>Loading the data, please have some patience it takes a while </p>
-<table id="dronedata">
-    <tr>
-    <th>DRONE NAME</th>
-<th>DRONE MAC ADDRESS</th>
-<th>FILE  ID</th>
-<th>FIRST RECORD</th>
-<th>LAST RECORD</th>
-</tr>
-</table>
-</div>
-</body>
+var dronesSettings = new Settings("/drones?format=json");
 
-<head> <!-- Gegevens in tabel plaatsen !-->
-<meta charset="utf-8">
-    <meta name="viewport" content="width=device-width">
-    <title>EX-7 Drone data: Yannick Van Oekelen</title>
-<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <script src="http://code.jquery.com/jquery-3.1.1.min.js"></script>
-    <script type="text/javascript">
-var settings = {
-    "async": true,
-    "crossDomain": true,
-    "url": "https://web-ims.thomasmore.be/datadistribution/API/2.0/drones?format=json",
-    "method": "GET",
-    "dataType": 'json',
-    "headers": {
-        "authorization": "Basic aW1zOno1MTJtVDRKeVgwUExXZw==",
-        "cache-control": "no-cache"
+    request(dronesSettings, function(error, response, dronesString) {
+        var drones = JSON.parse(dronesString);
+        drones.forEach(function(drone) {
+            var droneSettings = new Settings("/drones/" + drone.id + "?format=json")
+            request(droneSettings, function(error, response, droneString) {
+                var drone = JSON.parse(droneString);
+                dal.insertDrone(new Drone(
+                    drone.id,
+                    drone.name,
+                    drone.mac_address,
+                    drone.location,
+                    drone.last_packet_date,
+                    drone.files,
+                    drone.files_count));
+
+/*
     }
 };
 $.ajax(settings)
