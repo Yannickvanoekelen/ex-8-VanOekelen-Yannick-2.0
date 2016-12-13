@@ -20,6 +20,15 @@ var Settings = function(url) {
     };
 };
 
+var Drone = function(id, name, macA, loc, lastpada, files, filesCount) {
+    this._id = id
+    this.name = name;
+    this.mac_address = macA;
+    this.location = loc;
+    this.last_packet_date = lastpada;
+    this.files = files;
+    this.files_count = filesCount;
+};
 
 
 
