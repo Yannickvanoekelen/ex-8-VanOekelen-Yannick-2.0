@@ -36,3 +36,17 @@ var dal = {
             });
         });
     },
+    clearContent: function(call) {
+        this.connect(null, function(db) {
+            db.collection('contents').drop(function(err, result) {
+                db.close();
+            });
+        })
+    },
+    insertContent: function(drone, callback) {
+        this.connect(null, function(db) {
+            db.collection('contents').insert(drone, function(err, result) {
+                db.close();
+            });
+        });
+    };
